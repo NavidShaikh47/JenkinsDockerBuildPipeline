@@ -1,11 +1,7 @@
-FROM amazonlinux:latest
-
-RUN yum -y update && \
-yum -y install httpd && \
-yum clean all
-
-COPY index.html /var/www/html/index.html
-
+FROM ubuntu 
+RUN apt update 
+RUN apt install –y apache2 
+RUN apt install –y apache2-utils 
+RUN apt clean 
 EXPOSE 80
-
-ENTRYPOINT /usr/sbin/httpd -DFOREGROUND
+CMD [“apache2ctl”, “-D”, “FOREGROUND”]
